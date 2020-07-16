@@ -15,7 +15,7 @@ spec:
         path: /app/main.py
         raw:
           data: |
-            from zprogram import welcome, create_dataset, create_ising
+            from zprogram import create_dataset, create_ising
             from zquantum.qaoa.ansatz import build_farhi_qaoa_circuit_template
             from qeopenfermion import save_qubit_operator
             mu, sigma = create_dataset()
