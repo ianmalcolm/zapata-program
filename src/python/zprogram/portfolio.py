@@ -1,4 +1,4 @@
-import json
+from openfermion import QubitOperator
 
 def create_dataset():
     mu = [0.7313, 0.9893, 0.2725, 0.8750, 0.7667, 0.3622]
