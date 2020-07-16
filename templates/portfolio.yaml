@@ -1,0 +1,31 @@
+spec:
+  templates:
+
+  - name: build-portfolio-circuit
+    parent: generic-task
+    inputs:
+      parameters:
+      - name: q
+      - name: B
+      - name: L
+      - name: command
+        value: python3 main.py
+      artifacts:
+      - name: main-script
+        path: /app/main.py
+        raw:
+          data: |
+            from zprogram import welcome, create_dataset, create_ising
+            from zquantum.qaoa.ansatz import build_farhi_qaoa_circuit_template
+            from qeopenfermion import save_qubit_operator
+            mu, sigma = create_dataset()
+            hamiltonian = create_ising(mu,
+                                       sigma,
+                                       {{inputs.parameters.q}},
+                                       {{inputs.parameters.B}},
+                                       {{inputs.parameters.L}},)
+            save_qubit_operator(hamiltonian, 'hamiltonian.json')
+    outputs:
+      artifacts:
+      - name: hamiltonian
+        path: /app/hamiltonian.json
